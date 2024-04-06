@@ -1,24 +1,35 @@
+import { useEffect, useState, useContext } from 'react';
+import { DataContext } from './DataContext';
+
 function HomeFeatured() {
-  const homeFeatured = [
+  const data = useContext(DataContext);
+  const [homeFeatured, setHomeFeatured] = useState([
     {
       id: 1,
-      name: 'Smartphone',
-      description: 'Stay connected on the go with our latest smartphone featuring advanced technology and sleek design.',
-      image: 'https://via.placeholder.com/500'
+      image: 'https://via.placeholder.com/200', // replace with your placeholder image path
+      name: 'Loading...',
+      description: 'Loading...',
     },
     {
       id: 2,
-      name: 'Tablet',
-      description: 'Enjoy entertainment and productivity on the go with our powerful and versatile tablet, perfect for work, play, and everything in between.',
-      image: 'https://via.placeholder.com/600'
+      image: 'https://via.placeholder.com/200', // replace with your placeholder image path
+      name: 'Loading...',
+      description: 'Loading...',
     },
     {
       id: 3,
-      name: 'Laptop',
-      description: 'Unleash your creativity and productivity with our high-performance laptop, featuring cutting-edge technology and sleek, portable design.',
-      image: 'https://via.placeholder.com/700'
+      image: 'https://via.placeholder.com/200', // replace with your placeholder image path
+      name: 'Loading...',
+      description: 'Loading...',
+    },
+  ]);
+
+  useEffect(() => {
+    if (data.products && data.products.length > 0) {
+      setHomeFeatured(data.products.slice(0, 3));
     }
-  ]
+  }, [data]);
+
   return (
     <div className="container">
       <h1 className="text-center my-5">Featured Products</h1>

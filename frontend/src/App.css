@@ -38,3 +38,15 @@
   padding: 20px 0;
   text-align: center;
 }
+
+.card-name {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.product-price {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #007BFF;
+}

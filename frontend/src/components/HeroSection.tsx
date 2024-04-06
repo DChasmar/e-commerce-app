@@ -4,8 +4,8 @@ import axios from 'axios';
 const HeroSection = () => {
   const [images, setImages] = useState<string[]>([
     "https://via.placeholder.com/720x480", 
-    "https://via.placeholder.com/1080x720", 
-    "https://via.placeholder.com/1920x1080"
+    "https://via.placeholder.com/721x481", 
+    "https://via.placeholder.com/722x482"
   ]);
 
   const [currentImage, setCurrentImage] = useState(images[0]);
