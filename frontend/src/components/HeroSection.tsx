@@ -1,14 +1,31 @@
-import { useState, useEffect, useMemo, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 
 const HeroSection = () => {
-  const images: string[] = useMemo(() => [
+  const [images, setImages] = useState<string[]>([
     "https://via.placeholder.com/720x480", 
     "https://via.placeholder.com/1080x720", 
     "https://via.placeholder.com/1920x1080"
-  ], []);
+  ]);
+
   const [currentImage, setCurrentImage] = useState(images[0]);
 
   const intervalId = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get('http://52.23.229.23/api/config/');
+        const imageUrls = response.data[0].slider_images.map((img: { image: string }) => img.image);
+        setImages(imageUrls);
+        setCurrentImage(imageUrls[0]);
+      } catch (error) {
+        console.error('Failed to fetch images:', error);
+      }
+    };
+  
+    fetchImages();
+  }, []);
 
   const startInterval = () => {
     if (intervalId.current) {
