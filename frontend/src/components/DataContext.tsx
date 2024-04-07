@@ -1,6 +1,6 @@
 // DataContext.tsx
 import { createContext, useState, useEffect, ReactNode } from 'react';
-import { WebsiteConfig, Product, DataContextType } from '../types';
+import { WebsiteConfig, Product, DataContextType, CartItem } from '../types';
 import axios from 'axios';
 
 export const DataContext = createContext<DataContextType>({});
@@ -8,6 +8,7 @@ export const DataContext = createContext<DataContextType>({});
 export const DataProvider = ({ children }: { children: ReactNode })  => {
     const [products, setProducts] = useState<Product[]>([]);
     const [content, setContent] = useState<WebsiteConfig[]>([]);
+    const [cart, setCart] = useState<CartItem[]>([]);
 
     useEffect(() => {
         const fetchContent = async () => {
@@ -32,8 +33,8 @@ export const DataProvider = ({ children }: { children: ReactNode })  => {
     }, []);
 
     return (
-        <DataContext.Provider value={{ content, products }}>
-        {children}
+        <DataContext.Provider value={{ content, products, cart, setCart }}>
+            {children}
         </DataContext.Provider>
     );
 };

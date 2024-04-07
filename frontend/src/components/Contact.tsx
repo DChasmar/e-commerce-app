@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 
 function Contact() {
-  const [email, setEmail] = useState('');
+  const [recipient, setRecipient] = useState('');
   const [subject, setSubject] = useState('');
-  const [message, setMessage] = useState('');
+  const [body, setBody] = useState('');
 
   const onSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     const formData = {
-      recipient: "",
+      recipient,
       subject,
-      message,
+      body,
     };
 
     try {
@@ -43,7 +43,7 @@ function Contact() {
       <form onSubmit={onSubmit}>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">Email address</label>
-          <input type="email" className="form-control" id="email" value={email} onChange={e => setEmail(e.target.value)} />
+          <input type="email" className="form-control" id="email" value={recipient} onChange={e => setRecipient(e.target.value)} />
         </div>
         <div className="mb-3">
           <label htmlFor="subject" className="form-label">Subject</label>
@@ -51,7 +51,7 @@ function Contact() {
         </div>
         <div className="mb-3">
           <label htmlFor="message" className="form-label">Message</label>
-          <textarea className="form-control" id="message" rows={5} value={message} onChange={e => setMessage(e.target.value)}></textarea>
+          <textarea className="form-control" id="message" rows={5} value={body} onChange={e => setBody(e.target.value)}></textarea>
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>

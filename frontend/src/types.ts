@@ -13,11 +13,18 @@ export interface Product {
     price: string;
     description: string;
     image: string;
-    created_at: string;
-    updated_at: string;
+    created_at?: string;
+    updated_at?: string;
 }
 
 export interface DataContextType {
     content?: WebsiteConfig[];
     products?: Product[];
+    cart?: CartItem[];
+    setCart?: (cart: CartItem[]) => void;
 }
+
+export type CartItem = {
+    product: Product;
+    quantity: number;
+};

@@ -7,25 +7,27 @@ import HeroSection from './components/HeroSection';
 import HomeFeatured from './components/HomeFeatured';
 import Footer from './components/Footer';
 import Products from './components/Products';
-import Services from './components/Services';
 import About from './components/About';
 import Contact from './components/Contact';
+import Cart from './components/Cart';
+import Account from './components/Account';
 
 function App() {
   return (
     <DataProvider>
       <Router>
-        <div className="App">
+        <div className="d-flex flex-column min-vh-100">
           <NavBar />
           <Routes>
             <Route path="/" element={<><HeroSection /><HomeFeatured /></>}/>
             <Route path="/products" element={<Products />} />
-            <Route path="/services" element={<Services />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
-          <Footer />
         </div>
+        <Footer />
       </Router>
     </DataProvider>
   )

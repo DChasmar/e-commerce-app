@@ -1,8 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
+import { Product } from '../types';
 import { DataContext } from './DataContext';
+import { updateCart } from '../utils';
 
 const Products = () => {
     const data = useContext(DataContext);
+    const [showDropdown, setShowDropdown] = useState(false);
     const [products, setProducts] = useState([
         { id: 1, image: 'https://via.placeholder.com/200', name: 'Loading...', description: 'Loading...', price: '...' },
         { id: 2, image: 'https://via.placeholder.com/200', name: 'Loading...', description: 'Loading...', price: '...' },
@@ -24,7 +27,13 @@ const Products = () => {
         }
     }, [data]);
 
-    console.log(products);
+    const handleAddToCart = (productToAdd: Product): void => {
+        if (data.cart && data.setCart) {
+            updateCart(productToAdd, data.cart, data.setCart);
+            setShowDropdown(true);
+            setTimeout(() => setShowDropdown(false), 2000); // hide the dropdown after 2 seconds
+        }
+    };
 
     return (
         <div className="container">
@@ -38,7 +47,8 @@ const Products = () => {
                                 <h5 className="card-name">{product.name}</h5>
                                 <p className="card-text">{product.description}</p>
                                 <p className="product-price">{`$${product.price}`}</p>
-                                <a href="#" className="btn btn-primary">Add to Cart</a>
+                                <a href="#" className="btn btn-primary" onClick={(event) => {event.preventDefault(); handleAddToCart(product);}}>Add to Cart</a>
+                                {showDropdown && <div className="dropdown">Item added to cart</div>}
                             </div>
                         </div>
                     </div>
