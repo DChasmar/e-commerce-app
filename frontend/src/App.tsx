@@ -25,6 +25,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/account" element={<Account />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="*" element={<h1 style={{ textAlign: 'center', margin: 'auto', marginTop: '20px' }} >Not Found</h1>} />
           </Routes>
         </div>
         <Footer />
